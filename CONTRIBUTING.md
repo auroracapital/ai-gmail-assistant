@@ -236,7 +236,7 @@ Include:
 
 **Do NOT** open public issues for security vulnerabilities.
 
-Instead, email security@ai-gmail-assistant.com with:
+Instead, email sam@auroracapital.nl with:
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact

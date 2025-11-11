@@ -6,7 +6,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/ai-gmail-assistant?style=social)](https://github.com/yourusername/ai-gmail-assistant/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/auroracapital/ai-gmail-assistant?style=social)](https://github.com/auroracapital/ai-gmail-assistant/stargazers)
 
 **AI Gmail Assistant** uses Claude Sonnet 4.5 to intelligently organize your Gmail inbox, generate contextual draft responses, and save you hours every week. It's like having a personal email assistant that understands your business context and communication style.
 
@@ -52,7 +52,7 @@
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ai-gmail-assistant.git
+git clone https://github.com/auroracapital/ai-gmail-assistant.git
 cd ai-gmail-assistant
 ```
 
@@ -392,16 +392,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/ai-gmail-assistant&type=Date)](https://star-history.com/#yourusername/ai-gmail-assistant&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=auroracapital/ai-gmail-assistant&type=Date)](https://star-history.com/#auroracapital/ai-gmail-assistant&Date)
 
 ---
 
 ## 💬 Community & Support
 
-- 🐛 [Report a Bug](https://github.com/yourusername/ai-gmail-assistant/issues/new?template=bug_report.md)
-- 💡 [Request a Feature](https://github.com/yourusername/ai-gmail-assistant/issues/new?template=feature_request.md)
-- 💬 [Join Discussions](https://github.com/yourusername/ai-gmail-assistant/discussions)
-- 📧 Email: support@ai-gmail-assistant.com
+- 🐛 [Report a Bug](https://github.com/auroracapital/ai-gmail-assistant/issues/new?template=bug_report.md)
+- 💡 [Request a Feature](https://github.com/auroracapital/ai-gmail-assistant/issues/new?template=feature_request.md)
+- 💬 [Join Discussions](https://github.com/auroracapital/ai-gmail-assistant/discussions)
+- 📧 Email: sam@auroracapital.nl
 
 ---
 
