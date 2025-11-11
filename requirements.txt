@@ -1,0 +1,18 @@
+# Gmail Inbox Organizer - Python Dependencies
+
+# Google Gmail API
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.0
+google-api-python-client>=2.0.0
+
+# OpenAI/OpenRouter API client
+openai>=1.0.0
+
+# AWS SDK (for Lambda deployment)
+boto3>=1.26.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Date/time handling
+python-dateutil>=2.8.0

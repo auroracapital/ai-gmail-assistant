@@ -1,0 +1,129 @@
+# Gmail Inbox Organizer - .gitignore
+
+# ============================================
+# SECRETS & CREDENTIALS (NEVER COMMIT THESE)
+# ============================================
+*.pickle
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+credentials.json
+client_secret*.json
+gmail_token.pickle
+token.pickle
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# ============================================
+# AWS & CLOUD
+# ============================================
+.aws/
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# ============================================
+# PYTHON
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# ============================================
+# DEPLOYMENT PACKAGES
+# ============================================
+lambda_package/
+*.zip
+deployment/
+
+# ============================================
+# IDE & EDITORS
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ============================================
+# LOGS & TEMP FILES
+# ============================================
+*.log
+logs/
+*.tmp
+*.temp
+/tmp/
+
+# ============================================
+# TESTING
+# ============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ============================================
+# DOCUMENTATION BUILD
+# ============================================
+docs/_build/
+site/
+
+# ============================================
+# OS
+# ============================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+# Keep example files but ignore actual config
+config.py
+!config.example.py
+!.env.example
+
+# Analysis and temporary files
+email_analysis.json
+detailed_email_analysis.json
+gmail_action_list.json
+Draft_Email_Responses.md
+Gmail_Inbox_Organization_Report.md
+
+# Local test outputs
+/output/
+/test_results/
+credentials.txt

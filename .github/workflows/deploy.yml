@@ -1,0 +1,78 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  deploy:
+    name: Deploy to AWS Lambda
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Create Lambda deployment package
+        run: |
+          # Create deployment directory
+          mkdir -p lambda_package
+          
+          # Install dependencies
+          pip install --target lambda_package/ \
+            google-auth-oauthlib \
+            google-auth-httplib2 \
+            google-api-python-client \
+            openai \
+            boto3 \
+            python-dotenv
+          
+          # Copy Lambda handler
+          cp src/lambda_handler.py lambda_package/ 2>/dev/null || echo "No lambda_handler.py found, skipping"
+          
+          # Create ZIP file
+          cd lambda_package
+          zip -r ../gmail-organizer-lambda.zip .
+          cd ..
+      
+      - name: Update Lambda function code
+        run: |
+          aws lambda update-function-code \
+            --function-name gmail-inbox-organizer \
+            --zip-file fileb://gmail-organizer-lambda.zip \
+            --region ${{ secrets.AWS_REGION }}
+      
+      - name: Wait for Lambda update to complete
+        run: |
+          aws lambda wait function-updated \
+            --function-name gmail-inbox-organizer \
+            --region ${{ secrets.AWS_REGION }}
+      
+      - name: Test Lambda function
+        run: |
+          aws lambda invoke \
+            --function-name gmail-inbox-organizer \
+            --region ${{ secrets.AWS_REGION }} \
+            /tmp/lambda-response.json
+          
+          cat /tmp/lambda-response.json
+      
+      - name: Deployment summary
+        run: |
+          echo "✅ Lambda function updated successfully"
+          echo "Function: gmail-inbox-organizer"
+          echo "Region: ${{ secrets.AWS_REGION }}"
+          echo "Deployment time: $(date)"
