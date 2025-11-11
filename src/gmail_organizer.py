@@ -103,33 +103,37 @@ def get_gmail_service():
     return build('gmail', 'v1', credentials=creds)
 
 
-def detect_language(text: str) -> str:
+def detect_language(text: str, client: OpenAI) -> str:
     """
-    Detect if text is in Dutch or English
+    Detect the language of the email text using AI
     Analyzes first 500 characters to focus on latest message
+    Returns the detected language name (e.g., 'English', 'Dutch', 'Spanish', 'French', etc.)
     """
-    sample = text[:500].lower()
+    sample = text[:500]
     
-    # Dutch indicators
-    dutch_words = [
-        'de', 'het', 'een', 'van', 'en', 'is', 'op', 'te', 'voor', 'aan',
-        'met', 'als', 'zijn', 'dat', 'bij', 'ook', 'naar', 'om', 'deze',
-        'heb', 'heeft', 'kunnen', 'moet', 'graag', 'beste', 'groet',
-        'hartelijk', 'vriendelijk', 'bedankt', 'dank', 'je', 'jij', 'jou'
-    ]
+    if not sample.strip():
+        return "English"  # Default fallback
     
-    dutch_patterns = [
-        'ij', 'oe', 'aa', 'ee', 'oo', 'uu',  # Dutch vowel combinations
-        'groet', 'mvg', 'vriendelijk'  # Dutch greetings
-    ]
+    prompt = f"""Detect the language of this text and respond with ONLY the language name in English (e.g., 'English', 'Dutch', 'Spanish', 'French', 'German', 'Italian', 'Portuguese', 'Chinese', 'Japanese', etc.).
+
+Text:
+{sample}
+
+Language:"""
     
-    dutch_count = sum(1 for word in dutch_words if f' {word} ' in f' {sample} ')
-    pattern_count = sum(1 for pattern in dutch_patterns if pattern in sample)
-    
-    # If significant Dutch indicators, classify as Dutch
-    if dutch_count >= 5 or pattern_count >= 2:
-        return "Dutch"
-    return "English"
+    try:
+        response = client.chat.completions.create(
+            model=AI_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,  # Deterministic for language detection
+            max_tokens=10
+        )
+        
+        detected_language = response.choices[0].message.content.strip()
+        return detected_language
+    except Exception as e:
+        print(f"⚠️  Language detection error: {e}, defaulting to English")
+        return "English"
 
 
 def categorize_email_with_ai(email_data: Dict, client: OpenAI) -> Dict:
@@ -319,8 +323,8 @@ def main():
             
             print(f"[{i}/{len(messages)}] {subject[:60]}...")
             
-            # Detect language
-            language = detect_language(f"{subject} {body}")
+            # Detect language using AI
+            language = detect_language(f"{subject} {body}", ai_client)
             print(f"🌐 Language: {language}")
             
             # Categorize with AI

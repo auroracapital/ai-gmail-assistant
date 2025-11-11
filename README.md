@@ -20,8 +20,9 @@
 - **Conservative Deletion**: Safely removes spam and verification codes while preserving important emails
 - **Auto-Starring**: Highlights critical emails requiring immediate attention
 
-### 💬 **Language-Aware Draft Responses**
-- **Multi-Language Support**: Detects email language (Dutch, English) and responds accordingly
+### 💬 **Universal Language-Aware Draft Responses**
+- **Auto Language Detection**: AI automatically detects the language of incoming emails (supports all major languages)
+- **Native Language Responses**: Responds in the same language as the sender (English, Dutch, Spanish, French, German, Chinese, Japanese, and more)
 - **Context-Aware**: Understands your business (music industry, SaaS, investments)
 - **Tone Matching**: Maintains appropriate formality level
 - **One Draft Per Thread**: Automatically manages draft versions
@@ -445,7 +446,7 @@ Yes! Run locally with `python src/gmail_organizer.py` or set up a cron job.
 
 ### What languages are supported?
 
-Currently Dutch and English. Easy to extend to other languages by modifying the prompt.
+All major languages! The AI automatically detects the language of the incoming email and responds in that same language. This includes English, Dutch, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, and many more. No configuration needed - it just works.
 
 ### How do I stop the automation?
 
